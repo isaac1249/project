@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="還沒想到"
+        android:id="@+id/nav1"
+        />
+    <item android:title="地圖"
+       android:id="@+id/nav2"
+        />
+    <item android:title="還沒想到"
+        android:id="@+id/nav3"
+        />
+</menu>
