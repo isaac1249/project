@@ -3,6 +3,11 @@ package com.example.project;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.*;
 import androidx.fragment.app.Fragment;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,15 +16,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.project.databinding.ActivityMapsBinding;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.lang.reflect.Array;
 import java.util.HashMap;
+
+import static androidx.navigation.Navigation.findNavController;
 
 public class MRTFragment extends Fragment {
     private Context context;
@@ -27,17 +36,21 @@ public class MRTFragment extends Fragment {
     private GoogleMap mMap;
     private Spinner spinner;
     private Spinner spinner2;
+    private ArrayList<String> mdata;
+    notdata isdata;
     // TODO: Rename and change types of parameters
 
 
     public MRTFragment() {
         // Required empty public constructor
+        mdata = new ArrayList<>();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
     }
 
     private void setContentView(int activity_main) {
@@ -47,17 +60,55 @@ public class MRTFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View RootView = inflater.inflate(R.layout.fragment_m_r_t,null);
+        View RootView = inflater.inflate(R.layout.fragment_m_r_t,container, false);
         spinner = RootView.findViewById(R.id.spinner);
         spinner2 = RootView.findViewById(R.id.spinner2);
         btn = RootView.findViewById(R.id.btn);
+
+        initspinnerfooter();
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(),"已確認",Toast.LENGTH_LONG).show();
+                TicketFragment ticketFragment = new TicketFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.mainlayout, ticketFragment).commit();
+            }
+        });
+        return RootView;
+    }
+
+    private void initspinnerfooter() {
         ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.MRT_array, android.R.layout.simple_spinner_item);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(spinnerAdapter);
         spinner2.setAdapter(spinnerAdapter);
-        spinner.setSelection(2, false);
+        spinner.setSelection(7, false);
+        //未設立防呆
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getActivity(),"起點站設定為:" + spinnerAdapter.getItem(position),Toast.LENGTH_LONG).show();
+            }
 
-        return inflater.inflate(R.layout.fragment_m_r_t, container, false);
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getActivity(),"終點站設定為:" + spinnerAdapter.getItem(position),Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
+
 }

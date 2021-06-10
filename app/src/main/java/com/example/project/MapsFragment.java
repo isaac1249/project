@@ -30,15 +30,6 @@ public class MapsFragment extends Fragment {
 
         }
 
-        /**
-         * Manipulates the map once available.
-         * This callback is triggered when the map is ready to be used.
-         * This is where we can add markers or lines, add listeners or move the camera.
-         * In this case, we just add a marker near Sydney, Australia.
-         * If Google Play services is not installed on the device, the user will be prompted to
-         * install it inside the SupportMapFragment. This method will only be triggered once the
-         * user has installed Google Play services and returned to the app.
-         */
 
     };
 
@@ -48,16 +39,20 @@ public class MapsFragment extends Fragment {
         mMap.addMarker(new MarkerOptions().position(taichung_center).title("以臺中市政府捷運站為中心"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(taichung_center));
     }
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_maps, container, false);
         mapFragment = (SupportMapFragment)getChildFragmentManager().findFragmentById(R.id.map);
         if(mapFragment==null){
-            mapFragment.getMapAsync(callback);
+            FragmentManager fm = getFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
+            mapFragment = SupportMapFragment.newInstance();
+            ft.replace(R.id.map,mapFragment).commit();
         }
-        mapFragment.getMapAsync((OnMapReadyCallback) this);
+        //mapFragment.getMapAsync(this);
         return v;
     }
 

@@ -5,7 +5,7 @@
         android:id="@+id/nav1"
         />
     <item android:title="地圖"
-       android:id="@+id/nav2"
+        android:id="@+id/nav2"
         />
     <item android:title="還沒想到"
         android:id="@+id/nav3"

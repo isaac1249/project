@@ -6,12 +6,24 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string-array name="MRT_array">
         <item>北屯總站</item>
+        //0
         <item>舊社站</item>
         <item>松竹站</item>
-        <item>Mars</item>
-        <item>Jupiter</item>
-        <item>Saturn</item>
-        <item>Uranus</item>
-        <item>Neptune</item>
+        <item>四維國小站</item>
+        <item>文心崇德站</item>
+        <item>文心中清站</item>
+        <item>文華高中站</item>
+        <item>文心櫻花站</item>
+        <item>市政府站</item>
+        <item>水安宮站</item>
+        <item>文心森林公園站</item>
+        <item>南屯站</item>
+        <item>豐樂公園站</item>
+        <item>大慶站</item>
+        <item>九張犁站</item>
+        <item>九德站</item>
+        <item>烏日站</item>
+        <item>高鐵台中站</item>
+        //17
     </string-array>
 </resources>

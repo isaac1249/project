@@ -7,7 +7,9 @@
     android:layout_gravity="center_vertical"
     android:orientation="vertical"
     tools:context=".MainActivity"
-    android:background="@drawable/background"><![CDATA[
+    android:background="@drawable/background"
+    android:id="@+id/mainlayout">
+        <![CDATA[
 
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

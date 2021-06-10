@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/n"
+    app:startDestination="@id/fragment_m_r_t">
+   <fragment
+        android:id="@+id/fragment_m_r_t"
+        android:label="MRT">
+
+       <action
+           android:id="@+id/action_fragment_m_r_t_to_fragment_ticket"
+           app:destination="@id/fragment_ticket" />
+   </fragment>
+
+    <fragment
+        android:id="@+id/fragment_ticket"
+        android:label="ticket">
+
+    </fragment>
+
+</navigation>
