@@ -2,6 +2,9 @@ package com.example.project;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import android.content.Intent;
 import android.util.Log;
 import android.view.MenuItem;
@@ -11,12 +14,19 @@ import android.view.View;
 import android.view.MotionEvent;
 import android.os.Bundle;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationMenu;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
-    private Button buttonjump;
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback {
     private ImageView Logo;
+    private MenuItem item;
+    SupportMapFragment smf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,21 +36,57 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
-        buttonjump = (Button)findViewById(R.id.button);
-        Logo = (ImageView)findViewById(R.id.imageView);
+        //SupportMapFragment build
+        smf = SupportMapFragment.newInstance();
+        smf.getMapAsync(this);
 
-        buttonjump.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this,MapsActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull @org.jetbrains.annotations.NotNull MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {           //選取bar的功能
+        Fragment fragment = null;
+        FragmentManager sFm = getSupportFragmentManager();
+
+        if(smf.isAdded()){
+            sFm.beginTransaction().hide(smf).commit();
+        }
+
+        switch (item.getItemId()) {
+
+            case R.id.nav1:
+                fragment = new MRTFragment();                    //要改主頁的内容去該XXXXFragment改程式碼
+                break;
+
+            case R.id.nav2:
+                fragment = new MapsFragment();                          //要改主頁的内容去該XXXXFragment改程式碼
+                break;
+
+            case R.id.nav3:
+                //fragment = new MapsFragment();                          //要改主頁的内容去該XXXXFragment改程式碼
+                break;
+        }
+
+        return loadFragment(fragment);
+    }
+
+    private boolean loadFragment(Fragment fragment) {
+        //switching fragment
+        if (fragment != null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .commit();
+            return true;
+        }
         return false;
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
+    }
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 }

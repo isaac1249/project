@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,44 +7,36 @@
     android:layout_gravity="center_vertical"
     android:orientation="vertical"
     tools:context=".MainActivity"
-    android:background="@drawable/background">
+    android:background="@drawable/background"><![CDATA[
 
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:srcCompat="@drawable/logo"
-            tools:layout_editor_absoluteX="180dp"
-            tools:layout_editor_absoluteY="208dp" />
+        ]]>
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="253dp"
-            android:layout_height="148dp"
-            android:text="台中地圖"
-            app:backgroundTint="#0054C0"
-            tools:layout_editor_absoluteX="79dp"
-            tools:layout_editor_absoluteY="304dp" />
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="56dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    <!--下面這段是底下的navigation bar 排版時要擺在最下面 請你們注意 最左是map 中間map 最右-->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/navigation"
-        android:background="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/navigation"
-        app:itemHorizontalTranslationEnabled="false"
-        app:labelVisibilityMode="labeled"
-        />
+        <!--下面這段是底下的navigation bar 排版時要擺在最下面 請你們注意 最左是map 中間map 最右-->
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            app:itemHorizontalTranslationEnabled="false"
+            app:labelVisibilityMode="labeled"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/navigation" />
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
