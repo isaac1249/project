@@ -74,13 +74,20 @@ public class MRTFragment extends Fragment {
             public void onClick(View v) {
                 Toast.makeText(getActivity(),"已確認",Toast.LENGTH_LONG).show();
                 ticket.setText((CharSequence) spinner.getSelectedItem().toString());
-                Bundle start_bundle = new Bundle();
-                Bundle end_bundle = new Bundle();
-                //start_bundle.putString("start",spinner.getSelectedItem().toString());
-                end_bundle.putString("end",spinner.getSelectedItem().toString());
-
                 MapsFragment mapsFragment = new MapsFragment();
-                mapsFragment.setArguments(end_bundle);
+
+                Bundle bundle = new Bundle();
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+
+                bundle.putString("end",spinner2.getSelectedItem().toString());
+                bundle.putString("start",spinner.getSelectedItem().toString());
+
+                mapsFragment.setArguments(bundle);
+
+                fragmentTransaction.addToBackStack(null);
+                //fragmentTransaction.replace(R.id.mainlayout,mapsFragment);
+                fragmentTransaction.add(R.id.mainlayout,mapsFragment);
+                fragmentTransaction.commit();
             }
         });
         return RootView;

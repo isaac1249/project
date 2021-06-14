@@ -141,20 +141,29 @@ public class MapsFragment extends Fragment {
 
             BitmapDescriptor d = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE);
 
-            temp = (HashMap)restartant_info.get(0);
-            LatLng sydney1 = new LatLng(Double.parseDouble(temp.get("lat")), Double.parseDouble(temp.get("long")));
-            googleMap.addMarker(new MarkerOptions().icon(d).position(sydney1).title(temp.get("name"))).showInfoWindow();
-            temp = (HashMap)restartant_info.get(8);
-            LatLng sydney4 = new LatLng(Double.parseDouble(temp.get("lat")), Double.parseDouble(temp.get("long")));
-            googleMap.addMarker(new MarkerOptions().icon(d).position(sydney4).title(temp.get("name"))).showInfoWindow();
 
+            if(getArguments() != null) {
+                int myInt = getArguments().getInt("end");
 
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney3));
+                for(int k = 0; k < restartant_info.size(); k++){
+                    temp = (HashMap)restartant_info.get(k);
+                    if(getArguments().getString("end").equals(temp.get("name"))){
+                        LatLng sydney4 = new LatLng(Double.parseDouble(temp.get("lat")), Double.parseDouble(temp.get("long")));
+                        googleMap.addMarker(new MarkerOptions().icon(d).position(sydney4).title(temp.get("name"))).showInfoWindow();
+                    }
+                    else if (getArguments().getString("start").equals(temp.get("name"))){
+                        LatLng sydney1 = new LatLng(Double.parseDouble(temp.get("lat")), Double.parseDouble(temp.get("long")));
+                        googleMap.addMarker(new MarkerOptions().icon(d).position(sydney1).title(temp.get("name"))).showInfoWindow();
+                    }
+                }
+                //googleMap.addMarker(new MarkerOptions().icon(d).position(test).title(getArguments().getString("end"))).showInfoWindow();
+                googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney3));
 
-            googleMap.getUiSettings().setZoomControlsEnabled(true);
-            googleMap.getUiSettings().setCompassEnabled(true);
-            googleMap.getUiSettings().setMapToolbarEnabled(true);
-            googleMap.animateCamera(CameraUpdateFactory.zoomTo(12));
+                googleMap.getUiSettings().setZoomControlsEnabled(true);
+                googleMap.getUiSettings().setCompassEnabled(true);
+                googleMap.getUiSettings().setMapToolbarEnabled(true);
+                googleMap.animateCamera(CameraUpdateFactory.zoomTo(12));
+            }
         }
 
 
@@ -179,9 +188,6 @@ public class MapsFragment extends Fragment {
             mapFragment = SupportMapFragment.newInstance();
             ft.replace(R.id.map,mapFragment).commit();
         }
-        Bundle mBundle = new Bundle();
-        mBundle = getArguments();
-        mBundle.getString("end");
         //mapFragment.getMapAsync(this);
         return v;
     }
