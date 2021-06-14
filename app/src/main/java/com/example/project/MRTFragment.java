@@ -16,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -31,11 +32,11 @@ import java.util.HashMap;
 import static androidx.navigation.Navigation.findNavController;
 
 public class MRTFragment extends Fragment {
-    private Context context;
     private Button btn;
     private GoogleMap mMap;
     private Spinner spinner;
     private Spinner spinner2;
+    private TextView ticket;
     private ArrayList<String> mdata;
     notdata isdata;
     // TODO: Rename and change types of parameters
@@ -64,6 +65,7 @@ public class MRTFragment extends Fragment {
         spinner = RootView.findViewById(R.id.spinner);
         spinner2 = RootView.findViewById(R.id.spinner2);
         btn = RootView.findViewById(R.id.btn);
+        ticket = RootView.findViewById(R.id.howmuch);
 
         initspinnerfooter();
 
@@ -71,15 +73,20 @@ public class MRTFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(),"已確認",Toast.LENGTH_LONG).show();
-                TicketFragment ticketFragment = new TicketFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.mainlayout, ticketFragment).commit();
+                ticket.setText((CharSequence) spinner.getSelectedItem().toString());
+                Bundle start_bundle = new Bundle();
+                Bundle end_bundle = new Bundle();
+                //start_bundle.putString("start",spinner.getSelectedItem().toString());
+                end_bundle.putString("end",spinner.getSelectedItem().toString());
+
+                MapsFragment mapsFragment = new MapsFragment();
+                mapsFragment.setArguments(end_bundle);
             }
         });
         return RootView;
     }
 
-    private void initspinnerfooter() {
+    public void initspinnerfooter() {
         ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.MRT_array, android.R.layout.simple_spinner_item);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -91,6 +98,7 @@ public class MRTFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getActivity(),"起點站設定為:" + spinnerAdapter.getItem(position),Toast.LENGTH_LONG).show();
+                //isdata.start_point = spinnerAdapter.getItem(position);
             }
 
             @Override
@@ -102,6 +110,7 @@ public class MRTFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getActivity(),"終點站設定為:" + spinnerAdapter.getItem(position),Toast.LENGTH_LONG).show();
+
             }
 
             @Override

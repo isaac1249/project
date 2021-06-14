@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
-        manager.beginTransaction().add(R.id.mainlayout,mrtFragment).commit();
+        //manager.beginTransaction().add(R.id.mainlayout,mrtFragment).commit();
         //SupportMapFragment build
         smf = SupportMapFragment.newInstance();
         smf.getMapAsync(this);
