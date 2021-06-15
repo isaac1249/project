@@ -13,7 +13,8 @@
             android:layout_height="60dp"
             android:text="num1"
             android:id="@+id/t1"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:background="@drawable/text_view_border"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="60dp"

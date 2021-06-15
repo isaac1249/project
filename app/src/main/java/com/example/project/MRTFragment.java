@@ -88,10 +88,21 @@ public class MRTFragment extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(),"已確認",Toast.LENGTH_LONG).show();
-                ticket.setText((CharSequence) spinner.getSelectedItem().toString());
-                MapsFragment mapsFragment = new MapsFragment();
+                Toast.makeText(getActivity(), "已確認", Toast.LENGTH_LONG).show();
 
+                if (ticketprice(spinner2.getSelectedItem().toString(), spinner.getSelectedItem().toString()).equals(null)){
+                    ticket.setText("起點為：" + (CharSequence) spinner.getSelectedItem().toString() + "\n"
+                            + "終點為：" + (CharSequence) spinner2.getSelectedItem().toString() + "\n"
+                            + ticketprice(spinner.getSelectedItem().toString(), spinner2.getSelectedItem().toString()));
+                }else{
+                    ticket.setText("起點為：" + (CharSequence) spinner.getSelectedItem().toString() + "\n"
+                            + "終點為：" + (CharSequence) spinner2.getSelectedItem().toString() + "\n"
+                            + ticketprice(spinner2.getSelectedItem().toString(), spinner.getSelectedItem().toString()));
+
+                }
+
+
+                MapsFragment mapsFragment = new MapsFragment();
                 Bundle bundle = new Bundle();
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                 onHiddenChanged(true);
@@ -108,7 +119,214 @@ public class MRTFragment extends Fragment {
         });
         return RootView;
     }
-
+    public String ticketprice(String spinner1,String spinner2){
+        if (    spinner1.equals("北屯總站") && spinner2.equals("舊社站") ||
+                spinner1.equals("北屯總站") && spinner2.equals("松竹站") ||
+                spinner1.equals("北屯總站") && spinner2.equals("四維國小站") ||
+                spinner1.equals("北屯總站") && spinner2.equals("文心崇德站") ||
+                spinner1.equals("舊社站") && spinner2.equals("北屯總站") ||
+                spinner1.equals("舊社站") && spinner2.equals("松竹站") ||
+                spinner1.equals("舊社站") && spinner2.equals("四維國小站") ||
+                spinner1.equals("舊社站") && spinner2.equals("文心崇德站") ||
+                spinner1.equals("舊社站") && spinner2.equals("文心中清站") ||
+                spinner1.equals("四維國小站") && spinner2.equals("北屯總站") ||
+                spinner1.equals("四維國小站") && spinner2.equals("舊社站") ||
+                spinner1.equals("四維國小站") && spinner2.equals("松竹站") ||
+                spinner1.equals("四維國小站") && spinner2.equals("文心崇德站") ||
+                spinner1.equals("四維國小站") && spinner2.equals("文心中清站") ||
+                spinner1.equals("四維國小站") && spinner2.equals("文華高中站") ||
+                spinner1.equals("四維國小站") && spinner2.equals("文心櫻花站") ||
+                spinner1.equals("四維國小站") && spinner2.equals("市政府站") ||
+                spinner1.equals("文心崇德站") && spinner2.equals("北屯總站") ||
+                spinner1.equals("文心崇德站") && spinner2.equals("舊社站") ||
+                spinner1.equals("文心崇德站") && spinner2.equals("松竹站") ||
+                spinner1.equals("文心崇德站") && spinner2.equals("四維國小站") ||
+                spinner1.equals("文心崇德站") && spinner2.equals("文心中清站") ||
+                spinner1.equals("文心崇德站") && spinner2.equals("文華高中站") ||
+                spinner1.equals("文心崇德站") && spinner2.equals("文心櫻花站") ||
+                spinner1.equals("文心崇德站") && spinner2.equals("市政府站") ||
+                spinner1.equals("文心中清站") && spinner2.equals("松竹站") ||
+                spinner1.equals("文心中清站") && spinner2.equals("四維國小站") ||
+                spinner1.equals("文心中清站") && spinner2.equals("文心崇德站") ||
+                spinner1.equals("文心中清站") && spinner2.equals("文華高中站") ||
+                spinner1.equals("文心中清站") && spinner2.equals("文新櫻花站") ||
+                spinner1.equals("文心中清站") && spinner2.equals("市政府站") ||
+                spinner1.equals("文心中清站") && spinner2.equals("永安宮站") ||
+                spinner1.equals("文心中清站") && spinner2.equals("文心森林公園站") ||
+                spinner1.equals("文華高中站") && spinner2.equals("松竹站") ||
+                spinner1.equals("文華高中站") && spinner2.equals("四維國小站") ||
+                spinner1.equals("文華高中站") && spinner2.equals("文心崇德站") ||
+                spinner1.equals("文華高中站") && spinner2.equals("文心中清站") ||
+                spinner1.equals("文華高中站") && spinner2.equals("文心櫻花站") ||
+                spinner1.equals("文華高中站") && spinner2.equals("市政府站") ||
+                spinner1.equals("文華高中站") && spinner2.equals("永安宮站") ||
+                spinner1.equals("文華高中站") && spinner2.equals("文心森林公園站") ||
+                spinner1.equals("文華高中站") && spinner2.equals("南屯站") ||
+                spinner1.equals("文華高中站") && spinner2.equals("豐樂公園站") ||
+                spinner1.equals("文心櫻花站") && spinner2.equals("四維國小站") ||
+                spinner1.equals("文心櫻花站") && spinner2.equals("文心崇德站") ||
+                spinner1.equals("文心櫻花站") && spinner2.equals("文心中清站") ||
+                spinner1.equals("文心櫻花站") && spinner2.equals("文華高中站") ||
+                spinner1.equals("文心櫻花站") && spinner2.equals("市政府站") ||
+                spinner1.equals("文心櫻花站") && spinner2.equals("永安宮站") ||
+                spinner1.equals("文心櫻花站") && spinner2.equals("文心森林公園站") ||
+                spinner1.equals("文心櫻花站") && spinner2.equals("南屯站") ||
+                spinner1.equals("文心櫻花站") && spinner2.equals("豐樂公園站") ||
+                spinner1.equals("市政府站") && spinner2.equals("四維國小站") ||
+                spinner1.equals("市政府站") && spinner2.equals("文心崇德站") ||
+                spinner1.equals("市政府站") && spinner2.equals("文心中清站") ||
+                spinner1.equals("市政府站") && spinner2.equals("文華高中站") ||
+                spinner1.equals("市政府站") && spinner2.equals("文心櫻花站") ||
+                spinner1.equals("市政府站") && spinner2.equals("永安宮站") ||
+                spinner1.equals("市政府站") && spinner2.equals("文心森林公園站") ||
+                spinner1.equals("市政府站") && spinner2.equals("南屯站") ||
+                spinner1.equals("市政府站") && spinner2.equals("豐樂公園站") ||
+                spinner1.equals("市政府站") && spinner2.equals("大慶站") ||
+                spinner1.equals("永安宮站") && spinner2.equals("文心中清站") ||
+                spinner1.equals("永安宮站") && spinner2.equals("文華高中站") ||
+                spinner1.equals("永安宮站") && spinner2.equals("文心櫻花站") ||
+                spinner1.equals("永安宮站") && spinner2.equals("市政府站") ||
+                spinner1.equals("永安宮站") && spinner2.equals("永安宮站") ||
+                spinner1.equals("永安宮站") && spinner2.equals("文心森林公園站") ||
+                spinner1.equals("永安宮站") && spinner2.equals("南屯站") ||
+                spinner1.equals("永安宮站") && spinner2.equals("豐樂公園站") ||
+                spinner1.equals("永安宮站") && spinner2.equals("大慶站") ||
+                spinner1.equals("文心森林公園站") && spinner2.equals("文心中清站") ||
+                spinner1.equals("文心森林公園站") && spinner2.equals("文華高中站") ||
+                spinner1.equals("文心森林公園站") && spinner2.equals("文心櫻花站") ||
+                spinner1.equals("文心森林公園站") && spinner2.equals("市政府站") ||
+                spinner1.equals("文心森林公園站") && spinner2.equals("永安宮站") ||
+                spinner1.equals("文心森林公園站") && spinner2.equals("南屯站") ||
+                spinner1.equals("文心森林公園站") && spinner2.equals("豐樂公園站") ||
+                spinner1.equals("文心森林公園站") && spinner2.equals("大慶站") ||
+                spinner1.equals("文心森林公園站") && spinner2.equals("九張犁站") ||
+                spinner1.equals("南屯站") && spinner2.equals("文華高中站") ||
+                spinner1.equals("南屯站") && spinner2.equals("文心櫻花站") ||
+                spinner1.equals("南屯站") && spinner2.equals("市政府站") ||
+                spinner1.equals("南屯站") && spinner2.equals("永安宮站") ||
+                spinner1.equals("南屯站") && spinner2.equals("文心森林公園站") ||
+                spinner1.equals("南屯站") && spinner2.equals("豐樂公園站") ||
+                spinner1.equals("南屯站") && spinner2.equals("大慶站") ||
+                spinner1.equals("南屯站") && spinner2.equals("九張犁站") ||
+                spinner1.equals("豐樂公園站") && spinner2.equals("文華高中站") ||
+                spinner1.equals("豐樂公園站") && spinner2.equals("文心櫻花站") ||
+                spinner1.equals("豐樂公園站") && spinner2.equals("市政府站") ||
+                spinner1.equals("豐樂公園站") && spinner2.equals("永安宮站") ||
+                spinner1.equals("豐樂公園站") && spinner2.equals("文心森林公園站") ||
+                spinner1.equals("豐樂公園站") && spinner2.equals("南屯站") ||
+                spinner1.equals("豐樂公園站") && spinner2.equals("大慶站") ||
+                spinner1.equals("豐樂公園站") && spinner2.equals("九張犁站") ||
+                spinner1.equals("豐樂公園站") && spinner2.equals("烏日站") ||
+                spinner1.equals("大慶站") && spinner2.equals("市政府站") ||
+                spinner1.equals("大慶站") && spinner2.equals("永安宮站") ||
+                spinner1.equals("大慶站") && spinner2.equals("文心森林公園站") ||
+                spinner1.equals("大慶站") && spinner2.equals("南屯站") ||
+                spinner1.equals("大慶站") && spinner2.equals("豐樂公園站") ||
+                spinner1.equals("大慶站") && spinner2.equals("九張犁站") ||
+                spinner1.equals("大慶站") && spinner2.equals("烏日站") ||
+                spinner1.equals("大慶站") && spinner2.equals("高鐵台中站") ||
+                spinner1.equals("九張犁站") && spinner2.equals("永安宮站") ||
+                spinner1.equals("九張犁站") && spinner2.equals("文心森林公園站") ||
+                spinner1.equals("九張犁站") && spinner2.equals("南屯站") ||
+                spinner1.equals("九張犁站") && spinner2.equals("豐樂公園站") ||
+                spinner1.equals("九張犁站") && spinner2.equals("大慶站") ||
+                spinner1.equals("九張犁站") && spinner2.equals("烏日站") ||
+                spinner1.equals("九張犁站") && spinner2.equals("高鐵台中站") ||
+                spinner1.equals("烏日站") && spinner2.equals("豐樂公園站") ||
+                spinner1.equals("烏日站") && spinner2.equals("大慶站") ||
+                spinner1.equals("烏日站") && spinner2.equals("九張犁站") ||
+                spinner1.equals("烏日站") && spinner2.equals("高鐵台中站") ||
+                spinner1.equals("高鐵台中站") && spinner2.equals("大慶站") ||
+                spinner1.equals("高鐵台中站") && spinner2.equals("九張犁站") ||
+                spinner1.equals("高鐵台中站") && spinner2.equals("烏日站") ){
+            return "票價為：20元";
+        }
+        else if (spinner1.equals("北屯總站") && spinner2.equals("文心中清站") ||
+                spinner1.equals("北屯總站") && spinner2.equals("文華高中站") ||
+                spinner1.equals("舊社站") && spinner2.equals("文華高中站") ||
+                spinner1.equals("舊社站") && spinner2.equals("文心櫻花站") ||
+                spinner1.equals("松竹站") && spinner2.equals("文心櫻花站") ||
+                spinner1.equals("松竹站") && spinner2.equals("市政府站") ||
+                spinner1.equals("四維國小站") && spinner2.equals("永安宮站") ||
+                spinner1.equals("四維國小站") && spinner2.equals("文心森林公園站") ||
+                spinner1.equals("文心崇德站") && spinner2.equals("永安宮站") ||
+                spinner1.equals("文心崇德站") && spinner2.equals("文心森林公園站") ||
+                spinner1.equals("文心崇德站") && spinner2.equals("南屯站") ||
+                spinner1.equals("文心中清站") && spinner2.equals("南屯站") ||
+                spinner1.equals("文心中清站") && spinner2.equals("豐樂公園站") ||
+                spinner1.equals("文華高中站") && spinner2.equals("大慶站") ||
+                spinner1.equals("文心櫻花站") && spinner2.equals("大慶站") ||
+                spinner1.equals("文心櫻花站") && spinner2.equals("九張犁站") ||
+                spinner1.equals("市政府站") && spinner2.equals("九張犁站") ||
+                spinner1.equals("永安宮站") && spinner2.equals("烏日站") ||
+                spinner1.equals("文心森林公園站") && spinner2.equals("烏日站") ||
+                spinner1.equals("文心森林公園站") && spinner2.equals("高鐵台中站") ||
+                spinner1.equals("南屯站") && spinner2.equals("烏日站") ||
+                spinner1.equals("南屯站") && spinner2.equals("高鐵台中站") ||
+                spinner1.equals("豐樂公園站") && spinner2.equals("高鐵台中站")
+                 ){
+            return "票價為：25元";
+        }
+        else if (spinner1.equals("北屯總站") && spinner2.equals("文心櫻花站") ||
+                spinner1.equals("北屯總站") && spinner2.equals("市政府站") ||
+                spinner1.equals("舊社站") && spinner2.equals("市政府站") ||
+                spinner1.equals("舊社站") && spinner2.equals("永安宮站") ||
+                spinner1.equals("松竹站") && spinner2.equals("永安宮站") ||
+                spinner1.equals("松竹站") && spinner2.equals("文心森林公園站") ||
+                spinner1.equals("四維國小站") && spinner2.equals("南屯站") ||
+                spinner1.equals("文心崇德站") && spinner2.equals("豐樂公園站") ||
+                spinner1.equals("文心中清站") && spinner2.equals("大慶站") ||
+                spinner1.equals("文心中清站") && spinner2.equals("九張犁站") ||
+                spinner1.equals("文華高中站") && spinner2.equals("九張犁站") ||
+                spinner1.equals("文心櫻花站") && spinner2.equals("烏日站") ||
+                spinner1.equals("市政府站") && spinner2.equals("烏日站") ||
+                spinner1.equals("市政府站") && spinner2.equals("高鐵台中站") ||
+                spinner1.equals("永安宮站") && spinner2.equals("高鐵台中站")){
+            return "票價為：30元";
+        }
+        else if (spinner1.equals("北屯總站") && spinner2.equals("永安宮站") ||
+                spinner1.equals("北屯總站") && spinner2.equals("文心森林公園站") ||
+                spinner1.equals("北屯總站") && spinner2.equals("南屯站") ||
+                spinner1.equals("舊社站") && spinner2.equals("文心森林公園站") ||
+                spinner1.equals("舊社站") && spinner2.equals("南屯站") ||
+                spinner1.equals("舊社站") && spinner2.equals("豐樂公園站") ||
+                spinner1.equals("松竹站") && spinner2.equals("南屯站") ||
+                spinner1.equals("松竹站") && spinner2.equals("豐樂公園站") ||
+                spinner1.equals("四維國小站") && spinner2.equals("大慶站") ||
+                spinner1.equals("四維國小站") && spinner2.equals("九張犁站") ||
+                spinner1.equals("文心崇德站") && spinner2.equals("大慶站") ||
+                spinner1.equals("文心崇德站") && spinner2.equals("九張犁站") ||
+                spinner1.equals("文心中清站") && spinner2.equals("烏日站") ||
+                spinner1.equals("文華高中站") && spinner2.equals("烏日站") ||
+                spinner1.equals("文華高中站") && spinner2.equals("高鐵台中站") ||
+                spinner1.equals("文心櫻花站") && spinner2.equals("高鐵台中站")){
+            return "票價為：35元";
+        }
+        else if (spinner1.equals("北屯總站站") && spinner2.equals("豐樂公園站") ||
+                spinner1.equals("舊社站") && spinner2.equals("大慶站") ||
+                spinner1.equals("松竹站") && spinner2.equals("大慶站") ||
+                spinner1.equals("松竹站") && spinner2.equals("九張犁站") ||
+                spinner1.equals("四維國小站") && spinner2.equals("烏日站") ||
+                spinner1.equals("文心崇德站") && spinner2.equals("烏日站") ||
+                spinner1.equals("文心崇德站") && spinner2.equals("高鐵台中站") ||
+                spinner1.equals("文心中清站") && spinner2.equals("高鐵台中站")){
+            return "票價為:40元";
+        }
+        else if(spinner1.equals("北屯總站") && spinner2.equals("烏日站") ||
+                spinner1.equals("北屯總站") && spinner2.equals("高鐵台中站") ||
+                spinner1.equals("舊社站") && spinner2.equals("高鐵台中站") ||
+                spinner1.equals("松竹站") && spinner2.equals("高鐵台中站")){
+            return "票價為：50元";
+        }
+        else if (spinner1.equals("北屯總站") && spinner2.equals("大慶站") ||
+                spinner1.equals("北屯總站") && spinner2.equals("九張犁站") ||
+                spinner1.equals("舊社站") && spinner2.equals("烏日站") ||
+                spinner1.equals("松竹站") && spinner2.equals("烏日站") ||
+                spinner1.equals("四維國小站") && spinner2.equals("高鐵台中站")){
+            return "票價為：45元";
+        }
+        return null;
+    }
     public void initspinnerfooter() {
         ArrayAdapter<CharSequence> spinnerAdapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.MRT_array, android.R.layout.simple_spinner_item);
