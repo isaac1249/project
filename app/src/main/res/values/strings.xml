@@ -24,4 +24,10 @@
         <item>高鐵台中站</item>
         //17
     </string-array>
+    <string-array name="shing_su_chang">
+        <item>Inscone 英司康</item>
+        <item>燒鳥屋</item>
+        <item>森川丼丼大橋橫町</item>
+        <item>樹太老日本定食專賣店</item>
+    </string-array>
 </resources>

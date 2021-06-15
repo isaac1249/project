@@ -27,7 +27,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-        <!--下面這段是底下的navigation bar 排版時要擺在最下面 請你們注意 最左是map 中間map 最右-->
+
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/navigation"
             android:layout_width="match_parent"
@@ -39,6 +39,4 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:menu="@menu/navigation" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

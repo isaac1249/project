@@ -28,11 +28,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.lang.reflect.Array;
 import java.util.HashMap;
-
+import android.support.v4.app.*;
 import static androidx.navigation.Navigation.findNavController;
 
 public class MRTFragment extends Fragment {
-    private Button btn;
+    private Button btn,gotoplay;
     private GoogleMap mMap;
     private Spinner spinner;
     private Spinner spinner2;
@@ -65,10 +65,26 @@ public class MRTFragment extends Fragment {
         spinner = RootView.findViewById(R.id.spinner);
         spinner2 = RootView.findViewById(R.id.spinner2);
         btn = RootView.findViewById(R.id.btn);
+        gotoplay = RootView.findViewById(R.id.gotoplay);
         ticket = RootView.findViewById(R.id.howmuch);
 
         initspinnerfooter();
 
+        gotoplay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DiceFragment diceFragment = new DiceFragment();
+                Bundle bundle = new Bundle();
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                //onHiddenChanged(true);
+
+                bundle.putString("end",spinner2.getSelectedItem().toString());
+                diceFragment.setArguments(bundle);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.replace(R.id.mainlayout,diceFragment);
+                fragmentTransaction.commit();
+            }
+        });
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +94,7 @@ public class MRTFragment extends Fragment {
 
                 Bundle bundle = new Bundle();
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                onHiddenChanged(true);
 
                 bundle.putString("end",spinner2.getSelectedItem().toString());
                 bundle.putString("start",spinner.getSelectedItem().toString());
@@ -85,8 +102,7 @@ public class MRTFragment extends Fragment {
                 mapsFragment.setArguments(bundle);
 
                 fragmentTransaction.addToBackStack(null);
-                //fragmentTransaction.replace(R.id.mainlayout,mapsFragment);
-                fragmentTransaction.add(R.id.mainlayout,mapsFragment);
+                fragmentTransaction.replace(R.id.mainlayout,mapsFragment);
                 fragmentTransaction.commit();
             }
         });
@@ -125,6 +141,15 @@ public class MRTFragment extends Fragment {
 
             }
         });
+    }
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden) {   // 不在最前端显示 相当于调用了onPause();
+            return ;
+        }else{  // 在最前端显示 相当于调用了onResume();
+            //网络数据刷新
+        }
     }
 
 }

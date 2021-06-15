@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         MRTFragment mrtFragment = new MRTFragment();
+        MapsFragment mapsFragment = new MapsFragment();
         FragmentManager manager = getSupportFragmentManager();
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigation);
@@ -59,14 +60,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             case R.id.nav1:
                 fragment = new MRTFragment();                    //要改主頁的内容去該XXXXFragment改程式碼
                 break;
-
-            case R.id.nav2:
-                fragment = new MapsFragment();                          //要改主頁的内容去該XXXXFragment改程式碼
-                break;
-
-            case R.id.nav3:
-                //fragment = new MapsFragment();                          //要改主頁的内容去該XXXXFragment改程式碼
-                break;
         }
 
         return loadFragment(fragment);
@@ -77,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         if (fragment != null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.fragment_container, fragment)
+                    .add(R.id.mainlayout,fragment)
                     .commit();
             return true;
         }
