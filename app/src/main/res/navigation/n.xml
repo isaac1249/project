@@ -14,7 +14,8 @@
 
     <fragment
         android:id="@+id/fragment_ticket"
-        android:label="ticket">
+        android:label="ticket"
+        >
 
     </fragment>
 

@@ -60,8 +60,8 @@
         android:id="@+id/howmuch"
         android:layout_width="match_parent"
         android:layout_height="203dp"
-        android:text="TextView"
-        android:textSize="34sp" />
+        android:textSize="34sp"
+        android:background="@drawable/text_view_border"/>
 
     <Button
         android:id="@+id/gotoplay"
